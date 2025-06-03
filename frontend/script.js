@@ -1,8 +1,4 @@
-// const host = "https://your-backend-url.onrender.com"; // Update this to your Render backend URL
-
-const host = "http://10.111.66.138:5050";
-
-// const host = "https://9434-204-101-131-2.ngrok-free.app"
+const host = "https://lanversation.onrender.com"
 
 function getKey() {
   return document.getElementById("key").value.trim();
