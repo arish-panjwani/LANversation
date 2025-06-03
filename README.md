@@ -33,10 +33,23 @@ LANversation is a lightweight, encrypted LAN chat app that supports **group-base
 
 ## 📁 Project Structure
 
+```
 LANversation/
 ├── backend/ # Flask API
-├── frontend/ # Encrypted dark mode chat UI
+│ ├── app.py
+│ ├── requirements.txt
+│ ├── Procfile
+│ └── README.md
+│
+├── frontend/ # Encrypted simple dark mode chat UI
+│ ├── index.html
+│ ├── script.js
+│ ├── style.css
+│ └── README.md
+│
+├── .gitignore
 └── README.md # Project overview
+```
 
 ---
 
