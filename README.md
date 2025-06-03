@@ -33,3 +33,31 @@ LANversation is a lightweight, encrypted LAN chat app that supports **group-base
 
 ## 📁 Project Structure
 
+LANversation/
+├── backend/ # Flask API
+├── frontend/ # Encrypted dark mode chat UI
+└── README.md # Project overview
+
+---
+
+## 📦 Setup (Local)
+
+### 🖥 Backend (Flask)
+```
+bash
+cd backend
+pip install -r requirements.txt
+python app.py
+```
+
+### 🌐 Backend (Flask)
+Open frontend/index.html in a browser or run:
+```
+cd frontend
+python -m http.server
+```
+
+⚠️ Make sure the script.js file has the correct backend URL (https://lanversation.onrender.com)
+
+👥 Team
+Created by Arish Panjwani
