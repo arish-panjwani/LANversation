@@ -16,9 +16,15 @@
     <input type="text" id="username" placeholder=" 👤  Enter your name">
     <input type="password" id="key" placeholder=" 🔑  Shared Encryption Key">
     <textarea id="message" rows="3" placeholder=" ✍️  Type your message here..."></textarea>
-    <button onclick="sendMessage()">🚀 Send</button>
+<div class="button-row">
+  <button class="send-btn" onclick="sendMessage()">🚀 Send</button>
+  <button class="ping-btn" onclick="sendPing()">✋</button>
+</div>
+
 
     <ul id="chatBox"></ul>
   </div>
+   <!-- 🔊 Audio for Ping -->
+  <audio id="pingSound" src="https://notificationsounds.com/notification-sounds/event-538/download/mp3" preload="auto"></audio>
 </body>
 </html>

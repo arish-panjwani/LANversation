@@ -41,6 +41,23 @@ async function sendMessage() {
   document.getElementById("message").value = "";
 }
 
+function sendPing() {
+  const user = document.getElementById("username").value || "Anonymous";
+  const key = getKey();
+
+  if (!key) return alert("Encryption key is required for pinging.");
+
+  fetch(`${host}/send`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      user,
+      key_hash: getKeyHash(),
+      message: encryptMessage("✋"), // Sending ✋ as the ping
+    })
+  });
+}
+
 async function fetchMessages() {
   const res = await fetch(`${host}/messages`);
   const data = await res.json();
@@ -52,8 +69,12 @@ async function fetchMessages() {
     .reverse()
     .map(m => {
       const decrypted = decryptMessage(m.message);
-      return `<li><b>${m.user}</b> [${m.timestamp}]: ${decrypted}</li>`;
+      const isPing = decrypted === "✋";
+      if (isPing) document.getElementById("pingSound").play();
+
+      return `<li class="${isPing ? 'ping' : ''}"><b>${m.user}</b> [${m.timestamp}]: ${decrypted}</li>`;
     }).join("");
 }
+
 
 setInterval(fetchMessages, 1000);
