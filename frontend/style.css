@@ -1,32 +1,64 @@
 body {
   background-color: #121212;
   color: #e0e0e0;
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-h2 {
-  color: #ffffff;
+.container {
+  max-width: 500px;
+  width: 90%;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #1c1c1c;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 5px;
+  color: #03dac6;
+  font-size: 2em;
+}
+
+.tagline {
+  font-size: 0.9em;
+  color: #999;
+  margin-bottom: 20px;
 }
 
 input, textarea {
   width: 100%;
   margin: 10px 0;
-  padding: 10px;
+  padding: 12px 14px;
   border: none;
-  border-radius: 5px;
-  background-color: #1e1e1e;
+  border-radius: 8px;
+  background-color: #292929;
   color: #e0e0e0;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: none;
 }
 
 button {
-  padding: 10px 20px;
+  width: 100%;
+  padding: 12px;
   background-color: #03dac6;
   color: #000;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1em;
   font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
 button:hover {
@@ -37,13 +69,16 @@ button:hover {
   list-style: none;
   padding: 0;
   margin-top: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+  text-align: left;
 }
 
 #chatBox li {
-  padding: 8px 10px;
-  margin-bottom: 6px;
-  background-color: #1f1f1f;
-  border-radius: 4px;
+  background-color: #2a2a2a;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 6px;
 }
 
 b {

@@ -49,6 +49,7 @@ async function fetchMessages() {
 
   chatBox.innerHTML = data
     .filter(m => m.key_hash === keyHash)
+    .reverse()
     .map(m => {
       const decrypted = decryptMessage(m.message);
       return `<li><b>${m.user}</b> [${m.timestamp}]: ${decrypted}</li>`;
