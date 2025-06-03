@@ -29,6 +29,7 @@ def get_messages():
 if __name__ == "__main__":
     app.run(host="10.111.66.138", port=5050, debug=True)
 
+
 @app.route("/clear", methods=["POST"])
 def clear_messages():
     global messages
