@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LANversation - Encrypted LAN Chat</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <h2>LANversation</h2>
+  <input type="text" id="username" placeholder="Your name (optional)">
+  <input type="password" id="key" placeholder="Encryption Key (shared with group)">
+  <textarea id="message" rows="3" placeholder="Type your message..."></textarea>
+  <button onclick="sendMessage()">Send</button>
+  <ul id="chatBox"></ul>
+</body>
+</html>
