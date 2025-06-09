@@ -72,7 +72,7 @@ python -m http.server
 
 ⚠️ Make sure the script.js file has the correct backend URL (https://lanversation.onrender.com)
 
-### Screeenshot
+### Screeenshots
 <div style={{flexdirection:row}}>
 <img width="806" alt="web screenshot" src="https://github.com/user-attachments/assets/a13dc7f1-3aaa-421d-ba26-b76495fb9a7d" />
 <img width="194.5" alt="mobile screenshot" src="https://github.com/user-attachments/assets/d43a184d-c6e5-49a1-a3e3-9b0ecd481945" /></div>
