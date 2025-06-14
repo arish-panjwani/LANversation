@@ -61,6 +61,7 @@ function getRandomAnonymousName() {
 
 function sendPing() {
   const user = document.getElementById("username").value || getRandomAnonymousName();
+  console.log(user)
   const key = getKey();
 
   if (!key) return alert("Encryption key is required for pinging.");
