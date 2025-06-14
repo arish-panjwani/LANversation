@@ -41,8 +41,26 @@ async function sendMessage() {
   document.getElementById("message").value = "";
 }
 
+function getRandomAnonymousName() {
+  const animals = [
+    "CleverFox",
+    "BraveLion",
+    "SilentOwl",
+    "SwiftFalcon",
+    "MightyBear",
+    "SneakySnake",
+    "HappyPanda",
+    "WiseTurtle",
+    "QuickRabbit",
+    "GentleDolphin"
+  ];
+  
+  const randomIndex = Math.floor(Math.random() * animals.length);
+  return animals[randomIndex];
+}
+
 function sendPing() {
-  const user = document.getElementById("username").value || "Anonymous";
+  const user = document.getElementById("username").value || getRandomAnonymousName();
   const key = getKey();
 
   if (!key) return alert("Encryption key is required for pinging.");
