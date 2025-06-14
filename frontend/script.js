@@ -22,7 +22,7 @@ function decryptMessage(encrypted) {
 }
 
 async function sendMessage() {
-  const user = document.getElementById("username").value || "Anonymous";
+  const user = document.getElementById("username").value || getRandomAnonymousName();
   const key = getKey();
   const message = document.getElementById("message").value.trim();
 
