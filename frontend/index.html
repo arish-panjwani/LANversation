@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>LANversation 💬🔐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script src="script.js" defer></script>
@@ -13,18 +14,19 @@
     <h1>LANversation 💬</h1>
     <p class="tagline">Secure. Simple. Local. 🔐</p>
 
-    <input type="text" id="username" placeholder=" 👤  Enter your name">
-    <input type="password" id="key" placeholder=" 🔑  Shared Encryption Key">
-    <textarea id="message" rows="3" placeholder=" ✍️  Type your message here..."></textarea>
-<div class="button-row">
-  <button class="send-btn" onclick="sendMessage()">🚀 Send</button>
-  <button class="ping-btn" onclick="sendPing()">✋</button>
-</div>
-
+    <input type="text" id="username" placeholder="👤 Enter your name">
+    <input type="password" id="key" placeholder="🔑 Shared Encryption Key">
+    <textarea id="message" rows="3" placeholder="✍️ Type your message here..."></textarea>
+    
+    <div class="button-row">
+      <button class="send-btn" onclick="sendMessage()">🚀 Send</button>
+      <button class="ping-btn" onclick="sendPing()">✋</button>
+    </div>
 
     <ul id="chatBox"></ul>
   </div>
-   <!-- 🔊 Audio for Ping -->
+
+  <!-- 🔊 Audio for Ping -->
   <audio id="pingSound" src="https://notificationsounds.com/notification-sounds/event-538/download/mp3" preload="auto"></audio>
 </body>
 </html>
