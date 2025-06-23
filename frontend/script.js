@@ -56,7 +56,6 @@ function getRandomUniqueAnonymousName() {
     }
   }
 
-    // Fallback: all taken, append random number
   return `${animals[Math.floor(Math.random() * animals.length)]}_${Math.floor(Math.random() * 1000)}`;
 }
 
@@ -73,9 +72,16 @@ function getSessionUserName() {
   return cachedAnonymousName;
 }
 
-function formatEDTTime(isoString) {
+function formatEDTTime(timeString) {
   try {
-    const date = new Date(isoString);
+    // If timeString matches "HH:MM:SS", append today's date
+    if (/^\d{2}:\d{2}:\d{2}$/.test(timeString)) {
+      const today = new Date();
+      const datePart = today.toISOString().split("T")[0]; // YYYY-MM-DD
+      timeString = `${datePart}T${timeString}`;
+    }
+
+    const date = new Date(timeString);
     const options = {
       hour: 'numeric',
       minute: '2-digit',
@@ -98,16 +104,13 @@ async function sendMessage() {
     return;
   }
 
-  const timestamp = new Date().toISOString();
-
   await fetch(`${host}/send`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       user,
       key_hash: getKeyHash(),
-      message: encryptMessage(message),
-      timestamp: timestamp
+      message: encryptMessage(message)
     }),
   });
 
@@ -123,16 +126,13 @@ function sendPing() {
     return;
   }
 
-  const timestamp = new Date().toISOString();
-
   fetch(`${host}/send`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       user,
       key_hash: getKeyHash(),
-      message: encryptMessage("✋"),
-      timestamp: timestamp
+      message: encryptMessage("✋")
     }),
   });
 }
@@ -153,8 +153,7 @@ async function fetchMessages() {
         document.getElementById("pingSound").play();
       }
 
-      // If no timestamp, fallback to now
-      const formattedTime = formatEDTTime(m.timestamp || new Date().toISOString());
+      const formattedTime = formatEDTTime(m.timestamp || "");
 
       return `<li class="${isPing ? 'ping' : ''}"><b>${m.user}</b> [${formattedTime}]: ${decrypted}</li>`;
     })
