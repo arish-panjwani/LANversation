@@ -1,4 +1,6 @@
 const host = "https://lanversation.onrender.com";
+// const host = "http://127.0.0.1:5050"; // to run on local server
+
 let cachedAnonymousName = null;
 
 function getKey() {
@@ -85,8 +87,7 @@ function formatEDTTime(timeString) {
     const options = {
       hour: 'numeric',
       minute: '2-digit',
-      hour12: true,
-      timeZone: 'America/Toronto'
+      hour12: true
     };
     return `${date.toLocaleString('en-US', options).replace(' ', '')} EDT`;
   } catch {
