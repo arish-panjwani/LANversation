@@ -48,17 +48,15 @@ function getRandomUniqueAnonymousName() {
   ];
   const existingNames = getExistingNames();
 
-  // Shuffle animals list
   const shuffled = animals.sort(() => 0.5 - Math.random());
 
-  // Find a name not in existingNames
   for (const name of shuffled) {
     if (!existingNames.has(name)) {
       return name;
     }
   }
 
-  // Fallback: all names taken, append random number
+  // Fallback: all taken, append random number
   return `${animals[Math.floor(Math.random() * animals.length)]}_${Math.floor(Math.random() * 1000)}`;
 }
 
@@ -73,6 +71,21 @@ function getSessionUserName() {
   }
 
   return cachedAnonymousName;
+}
+
+function formatEDTTime(isoString) {
+  try {
+    const date = new Date(isoString);
+    const options = {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+      timeZone: 'America/Toronto'
+    };
+    return `${date.toLocaleString('en-US', options).replace(' ', '')} EDT`;
+  } catch {
+    return "Invalid Time";
+  }
 }
 
 async function sendMessage() {
@@ -134,7 +147,9 @@ async function fetchMessages() {
         document.getElementById("pingSound").play();
       }
 
-      return `<li class="${isPing ? 'ping' : ''}"><b>${m.user}</b> [${m.timestamp}]: ${decrypted}</li>`;
+      const formattedTime = formatEDTTime(m.timestamp);
+
+      return `<li class="${isPing ? 'ping' : ''}"><b>${m.user}</b> [${formattedTime}]: ${decrypted}</li>`;
     })
     .join("");
 }
