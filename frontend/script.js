@@ -56,7 +56,7 @@ function getRandomUniqueAnonymousName() {
     }
   }
 
-  // Fallback: all taken, append random number
+    // Fallback: all taken, append random number
   return `${animals[Math.floor(Math.random() * animals.length)]}_${Math.floor(Math.random() * 1000)}`;
 }
 
@@ -84,7 +84,7 @@ function formatEDTTime(isoString) {
     };
     return `${date.toLocaleString('en-US', options).replace(' ', '')} EDT`;
   } catch {
-    return "Invalid Time";
+    return "InvalidTime";
   }
 }
 
@@ -98,6 +98,8 @@ async function sendMessage() {
     return;
   }
 
+  const timestamp = new Date().toISOString();
+
   await fetch(`${host}/send`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -105,6 +107,7 @@ async function sendMessage() {
       user,
       key_hash: getKeyHash(),
       message: encryptMessage(message),
+      timestamp: timestamp
     }),
   });
 
@@ -120,6 +123,8 @@ function sendPing() {
     return;
   }
 
+  const timestamp = new Date().toISOString();
+
   fetch(`${host}/send`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -127,6 +132,7 @@ function sendPing() {
       user,
       key_hash: getKeyHash(),
       message: encryptMessage("✋"),
+      timestamp: timestamp
     }),
   });
 }
@@ -147,7 +153,8 @@ async function fetchMessages() {
         document.getElementById("pingSound").play();
       }
 
-      const formattedTime = formatEDTTime(m.timestamp);
+      // If no timestamp, fallback to now
+      const formattedTime = formatEDTTime(m.timestamp || new Date().toISOString());
 
       return `<li class="${isPing ? 'ping' : ''}"><b>${m.user}</b> [${formattedTime}]: ${decrypted}</li>`;
     })
