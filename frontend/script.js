@@ -76,10 +76,9 @@ function getSessionUserName() {
 
 function formatEDTTime(timeString) {
   try {
-    // If timeString matches "HH:MM:SS", append today's date
     if (/^\d{2}:\d{2}:\d{2}$/.test(timeString)) {
       const today = new Date();
-      const datePart = today.toISOString().split("T")[0]; // YYYY-MM-DD
+      const datePart = today.toISOString().split("T")[0];
       timeString = `${datePart}T${timeString}`;
     }
 
@@ -155,10 +154,26 @@ async function fetchMessages() {
       }
 
       const formattedTime = formatEDTTime(m.timestamp || "");
+      const safeMessage = decrypted.replace(/`/g, "\\`"); // Escape backticks
 
-      return `<li class="${isPing ? 'ping' : ''}"><b>${m.user}</b> [${formattedTime}]: ${decrypted}</li>`;
+      return `
+        <li class="${isPing ? 'ping' : ''}">
+          <span><b>${m.user}</b> [${formattedTime}]: ${decrypted}</span>
+          <button class="copy-btn" onclick="copyToClipboard(\`${safeMessage}\`)">📋</button>
+        </li>
+      `;
     })
     .join("");
+}
+
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text)
+    .then(() => {
+      console.log("Copied to clipboard!");
+    })
+    .catch(err => {
+      console.error("Failed to copy:", err);
+    });
 }
 
 setInterval(fetchMessages, 1000);

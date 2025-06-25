@@ -96,10 +96,31 @@ button {
 }
 
 #chatBox li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #2a2a2a;
   margin-bottom: 8px;
-  padding: 10px;
+  padding: 10px 12px;
   border-radius: 6px;
+}
+
+#chatBox li span {
+  flex: 1;
+  margin-right: 10px;
+  word-break: break-word;
+}
+
+.copy-btn {
+  background: none;
+  border: none;
+  color: #03dac6;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  color: #00ffe1;
 }
 
 .ping {
