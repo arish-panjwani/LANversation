@@ -8,6 +8,7 @@ LANversation is a lightweight, encrypted LAN chat app that supports **group-base
 
 - **Frontend (Netlify):** [https://lanversation.netlify.app](https://lanversation.netlify.app)
 - **Backend (Render):** [https://lanversation.onrender.com](https://lanversation.onrender.com)
+- **Uptime Monitoring (UptimeRobot):** [https://stats.uptimerobot.com/sz7or7OzEV](https://stats.uptimerobot.com/sz7or7OzEV)
 
 ---
 
