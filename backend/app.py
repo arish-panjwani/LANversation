@@ -35,6 +35,10 @@ def send_message():
 
 @app.route("/ping", methods=["GET"])
 def ping_proxy():
+
+    edt = pytz.timezone("America/Toronto")
+    now_edt = datetime.now(edt)
+
     try:
         response = requests.post(f"{API_BASE_URL}/send", json={
             "user": "Anonymous",
