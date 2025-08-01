@@ -2,11 +2,16 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from datetime import datetime
 import pytz
+import requests
+import os
 
 app = Flask(__name__)
 CORS(app)
 
 messages = []
+
+# Use API_BASE_URL from .env or fallback to localhost for local testing
+API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:5050")
 
 @app.route("/")
 def home():
@@ -16,7 +21,6 @@ def home():
 def send_message():
     data = request.json
 
-    # Generate current EDT time with timezone offset
     edt = pytz.timezone("America/Toronto")
     now_edt = datetime.now(edt)
 
@@ -28,6 +32,19 @@ def send_message():
     })
 
     return jsonify(success=True)
+
+@app.route("/ping", methods=["GET"])
+def ping_proxy():
+    try:
+        response = requests.post(f"{API_BASE_URL}/send", json={
+            "user": "Anonymous",
+            "message": "It still works 🥳🥳",
+            "key_hash": "lanversation-status-check",
+            "timestamp": now_edt.isoformat()
+        })
+        return jsonify(success=True, forwarded_response=response.json())
+    except Exception as e:
+        return jsonify(success=False, error=str(e)), 500
 
 @app.route("/messages", methods=["GET"])
 def get_messages():
